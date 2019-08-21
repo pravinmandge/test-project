@@ -4,7 +4,7 @@ server:
 
 oauth:
   access:
-    token: 092a5817078a9316a48e49c961aef56758d79c16
+    token: e1bc8b9fb13863ff8d852a7da5852b701639602b
     
 github:
   repo:
