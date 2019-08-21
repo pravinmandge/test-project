@@ -1,0 +1,11 @@
+
+server:
+  port : 80
+
+oauth:
+  access:
+    token: 092a5817078a9316a48e49c961aef56758d79c16
+    
+github:
+  repo:
+    url: https://api.github.com/repos
