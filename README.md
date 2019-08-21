@@ -23,3 +23,5 @@ Two test cases covers the positive and negative scenario for testing this end po
   # b. whenNoProjectDetailsFoundForUserAndProjectId(com.example.demo.ProjectServiceClientTest)
       return no records as no project associated with the userName and project id
 
+Following is the CI with Docker Hub in order to build docker image:
+https://cloud.docker.com/repository/docker/pravinmandge/test-project/general
