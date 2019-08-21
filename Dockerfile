@@ -1,6 +1,20 @@
-FROM maven:onbuild AS buildenv
+# Start with a base image containing Java runtime
+FROM openjdk:8-jdk-alpine
 
-FROM openjdk:jre-alpine
-COPY --from=buildenv /usr/src/app/target/test-project-0.0.1-SNAPSHOT.jar /test-project.jar
+# Add Maintainer Info
+LABEL maintainer="pravinmandge@gmail.com"
+
+# Add a volume pointing to /tmp
+VOLUME /tmp
+
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
-CMD ["java", "-jar", "/test-project.jar"]
+
+# The application's jar file
+ARG JAR_FILE=target/test-project-0.0.1-SNAPSHOT.jar
+
+# Add the application's jar to the container
+ADD ${JAR_FILE} test-project.jar
+
+# Run the jar file 
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/test-project.jar"]
