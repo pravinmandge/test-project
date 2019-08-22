@@ -2,9 +2,9 @@
 server:
   port : 80
 
-oauth:
-  access:
-    token: e1bc8b9fb13863ff8d852a7da5852b701639602b
+basic:
+  auth:
+    token: cHJhdmlubWFuZGdlOnByYXZpbl8xMjM=
     
 github:
   repo:

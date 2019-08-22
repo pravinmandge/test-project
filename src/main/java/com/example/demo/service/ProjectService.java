@@ -34,7 +34,7 @@ public class ProjectService {
 
 	private static final Logger logger = LoggerFactory.getLogger(ProjectService.class);
 
-	@Value("${oauth.access.token}")
+	@Value("${basic.auth.token}")
 	private String accessToken;
 
 	@Value("${github.repo.url}")
@@ -187,8 +187,7 @@ public class ProjectService {
 
 	private void populateHeaders(HttpGet getMethod) {
 		// preparing header
-		String notEncoded = "pravinmandge:pravin_123";
-		String encodedAuth = "Basic " + new String(Base64.encodeBase64(notEncoded.getBytes()));
+		String encodedAuth = "Basic " + accessToken;
 
 		getMethod.addHeader("Authorization", encodedAuth);
 		getMethod.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
