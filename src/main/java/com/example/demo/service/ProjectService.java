@@ -101,9 +101,9 @@ public class ProjectService {
 
 	private String getProjectReadme(String owner, String repo) throws RecordNotFoundException, InternalServerException {
 
-		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/readme?oauth_token=" + accessToken);
+		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/readme");
 
-		request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+		populateHeaders(request);
 
 		try (CloseableHttpClient newHttpClient = HttpClientBuilder.create().build()) {
 			HttpResponse response = newHttpClient.execute(request);
@@ -132,9 +132,9 @@ public class ProjectService {
 	private List<String> getProjectContributors(String owner, String repo) throws InternalServerException {
 		List<String> contributors = new ArrayList<String>();
 
-		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/collaborators?oauth_token=" + accessToken);
+		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/collaborators");
 
-		request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+		populateHeaders(request);
 
 		try (CloseableHttpClient newHttpClient = HttpClientBuilder.create().build()) {
 			HttpResponse response = newHttpClient.execute(request);
@@ -163,9 +163,9 @@ public class ProjectService {
 
 	private int getProjectCommits(String owner, String repo) throws InternalServerException {
 
-		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/commits?oauth_token=" + accessToken);
+		HttpGet request = new HttpGet(repoURL + "/" + owner + "/" + repo + "/commits");
 
-		request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+		populateHeaders(request);
 
 		try (CloseableHttpClient newHttpClient = HttpClientBuilder.create().build()) {
 			HttpResponse response = newHttpClient.execute(request);
@@ -185,4 +185,12 @@ public class ProjectService {
 		}
 	}
 
+	private void populateHeaders(HttpGet getMethod) {
+		// preparing header
+		String notEncoded = "pravinmandge:pravin_123";
+		String encodedAuth = "Basic " + new String(Base64.encodeBase64(notEncoded.getBytes()));
+
+		getMethod.addHeader("Authorization", encodedAuth);
+		getMethod.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+	}
 }
