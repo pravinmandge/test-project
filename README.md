@@ -25,3 +25,12 @@ Two test cases covers the positive and negative scenario for testing this end po
 
 Following is the CI with Docker Hub in order to build docker image:
 https://hub.docker.com/r/pravinmandge/test-project
+
+# Pull the latest docker image from docker-hub using command:
+docker pull pravinmandge/test-project
+
+# Run the docker cotainer using command:
+docker run -p 5000:80 pravinmandge/test-project:latest
+
+# try to access the Swagger using:
+http://<container_ip>:80/swagger-ui.html
